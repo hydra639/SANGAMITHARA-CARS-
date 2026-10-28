@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Book outstation and local cabs with Mithara Travel Agency across all 38 districts of Tamil Nadu. Real-time road distance and transparent ₹80/km fare with live road routing.">
+  <title>Book a Ride | Mithara Travel Agency - Transparent ₹80/km Across Tamil Nadu</title>
+  
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ================================================================= -->
+  <!-- HEADER & NAVIGATION -->
+  <!-- ================================================================= -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-container">
+      <a href="index.html" class="logo" aria-label="Mithara Travel Agency Home">
+        <span class="logo-badge">MITHARA</span>
+        <span class="logo-sub">TRAVEL AGENCY</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Primary Navigation">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="book.html" class="nav-link active">Book a Ride</a></li>
+          <li><a href="how-it-works.html" class="nav-link">How It Works</a></li>
+          <li><a href="why-us.html" class="nav-link">Why Choose Us</a></li>
+          <li><a href="routes.html" class="nav-link">Popular Routes</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="tel:+917904974485" class="btn-mobile-call" aria-label="Call Dispatch Desk">
+          <span>📞 Call</span>
+        </a>
+        <a href="book.html" class="btn btn-primary header-cta">Book Now</a>
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="mobileDrawer">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Overlay -->
+  <div class="mobile-drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="mobile-drawer" id="mobileDrawer" aria-label="Mobile Navigation Menu">
+    <div class="drawer-header">
+      <div class="logo">
+        <span class="logo-badge">MITHARA</span>
+        <span class="logo-sub">TRAVEL AGENCY</span>
+      </div>
+      <button class="drawer-close" id="drawerClose" aria-label="Close Navigation Menu">&times;</button>
+    </div>
+    <ul class="drawer-nav-list">
+      <li><a href="index.html" class="drawer-link">Home</a></li>
+      <li><a href="book.html" class="drawer-link active">Book a Ride</a></li>
+      <li><a href="how-it-works.html" class="drawer-link">How It Works</a></li>
+      <li><a href="why-us.html" class="drawer-link">Why Choose Us</a></li>
+      <li><a href="routes.html" class="drawer-link">Popular Routes</a></li>
+      <li><a href="about.html" class="drawer-link">About</a></li>
+      <li><a href="contact.html" class="drawer-link">Contact</a></li>
+    </ul>
+    <div class="drawer-footer">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 0.65rem;">
+        <a href="tel:+917904974485" class="btn btn-outline" style="border-color: rgba(255, 184, 0, 0.4); color: var(--accent-gold); font-size: 0.85rem; padding: 0.6rem 0.4rem; text-align: center;">
+          <span>📞 Call Desk</span>
+        </a>
+        <a href="https://wa.me/917904974485" target="_blank" rel="noopener noreferrer" class="btn" style="background: #25d366; color: #fff; font-size: 0.85rem; padding: 0.6rem 0.4rem; text-align: center; font-weight: 700;">
+          <span>💬 WhatsApp</span>
+        </a>
+      </div>
+      <a href="book.html" class="btn btn-primary btn-block drawer-cta">Book a Ride Now</a>
+    </div>
+  </aside>
+
+  <main>
+    <!-- ================================================================= -->
+    <!-- PAGE HERO HEADER -->
+    <!-- ================================================================= -->
+    <section class="page-hero">
+      <div class="container text-center">
+        <div class="pill-badge">
+          <span class="pulse-dot"></span>
+          <span>All 38 Tamil Nadu Districts Covered • Fixed ₹80 / KM</span>
+        </div>
+        <h1 class="page-title">Book Your <span class="highlight-gold">Cab Ride</span></h1>
+        <p class="page-subtitle">
+          Enter any pickup and destination across Tamil Nadu. Calculate exact road distance, transparent ₹80/km fare, and book instantly.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- BOOKING SECTION (INTERACTIVE ENGINE & MAP) -->
+    <!-- ================================================================= -->
+    <section class="section booking-page-section" id="book">
+      <div class="container">
+        
+        <div class="booking-grid">
+          
+          <!-- LEFT: Booking Card -->
+          <div class="card booking-card">
+            <div class="card-header">
+              <h2 class="card-title">Ride Route &amp; Pickup</h2>
+              <span class="card-sub">Instant road distance &amp; tariff calculation</span>
+            </div>
+
+            <form id="bookingForm" class="booking-form" onsubmit="event.preventDefault();">
+              
+              <!-- Pickup Location Group -->
+              <div class="form-group">
+                <div class="form-label-row">
+                  <label for="pickupInput" class="form-label">
+                    <span class="step-indicator">A</span> Pickup Location (Starting Point)
+                  </label>
+                  <button type="button" class="btn-location-action" id="useLocationBtn" title="Detect your current location">
+                    <span class="btn-icon">📍</span> Use My Location
+                  </button>
+                </div>
+                
+                <div class="input-wrapper">
+                  <input 
+                    type="text" 
+                    id="pickupInput" 
+                    class="form-input" 
+                    placeholder="Enter pickup city, town, or area in Tamil Nadu..." 
+                    value="Salem, Tamil Nadu"
+                    autocomplete="off"
+                    required
+                  >
+                  <button type="button" class="input-clear-btn" id="clearPickupBtn" aria-label="Clear pickup" style="display:none;">&times;</button>
+                </div>
+
+                <!-- Pickup Autocomplete Suggestions Dropdown -->
+                <div class="suggestions-dropdown" id="pickupSuggestions" role="listbox" aria-label="Pickup suggestions"></div>
+
+                <!-- Geolocation Status Notice -->
+                <div class="location-status" id="locationStatus" role="status" aria-live="polite"></div>
+              </div>
+
+              <!-- Route Swap / Divider -->
+              <div class="route-divider">
+                <span class="divider-line"></span>
+                <button type="button" class="divider-icon-btn" id="swapRouteBtn" title="Swap Pickup and Destination" aria-label="Swap pickup and destination">⇅</button>
+                <span class="divider-line"></span>
+              </div>
+
+              <!-- Destination Search Group -->
+              <div class="form-group destination-group">
+                <div class="form-label-row">
+                  <label for="destinationInput" class="form-label">
+                    <span class="step-indicator">B</span> Drop Location (Destination)
+                  </label>
+                  <span class="dest-badge-tn">All 38 TN Districts</span>
+                </div>
+                
+                <div class="input-wrapper">
+                  <input 
+                    type="text" 
+                    id="destinationInput" 
+                    class="form-input" 
+                    placeholder="Enter drop city, town, taluk, or village in Tamil Nadu..." 
+                    autocomplete="off"
+                    required
+                  >
+                  <button type="button" class="input-clear-btn" id="clearDestBtn" aria-label="Clear destination" style="display:none;">&times;</button>
+                </div>
+
+                <!-- Autocomplete Suggestions Dropdown -->
+                <div class="suggestions-dropdown" id="destinationSuggestions" role="listbox" aria-label="Destination suggestions"></div>
+
+                <!-- Tamil Nadu Region Filter Chips -->
+                <div class="tn-region-filters" id="tnRegionFilters" role="group" aria-label="Tamil Nadu Region Filter">
+                  <button type="button" class="region-chip active" data-region="all">All TN</button>
+                  <button type="button" class="region-chip" data-region="salem">Salem &amp; Nearby</button>
+                  <button type="button" class="region-chip" data-region="kongu">Kongu Zone</button>
+                  <button type="button" class="region-chip" data-region="hills">Hill Stations</button>
+                  <button type="button" class="region-chip" data-region="pilgrimage">Temples</button>
+                  <button type="button" class="region-chip" data-region="major">Metros</button>
+                </div>
+
+                <!-- Quick Destination Chips -->
+                <div class="quick-chips">
+                  <span class="chips-label">Popular in TN:</span>
+                  <button type="button" class="chip-btn" data-dest="Yercaud">Yercaud</button>
+                  <button type="button" class="chip-btn" data-dest="Coimbatore">Coimbatore</button>
+                  <button type="button" class="chip-btn" data-dest="Chennai">Chennai</button>
+                  <button type="button" class="chip-btn" data-dest="Madurai">Madurai</button>
+                  <button type="button" class="chip-btn" data-dest="Trichy">Trichy</button>
+                  <button type="button" class="chip-btn" data-dest="Ooty">Ooty</button>
+                  <button type="button" class="chip-btn" data-dest="Kodaikanal">Kodaikanal</button>
+                  <button type="button" class="chip-btn" data-dest="Rameswaram">Rameswaram</button>
+                  <button type="button" class="chip-btn" data-dest="Kanyakumari">Kanyakumari</button>
+                  <button type="button" class="chip-btn" data-dest="Bangalore">Bangalore</button>
+                </div>
+              </div>
+
+              <!-- Action button to calculate/update -->
+              <button type="button" class="btn btn-primary btn-block btn-lg" id="calculateRouteBtn">
+                Calculate Distance &amp; Fare
+              </button>
+
+              <!-- Prominent Inline Calculation Result Box -->
+              <div id="inlineCalcResult" class="inline-calc-result" style="display:none;" aria-live="polite"></div>
+            </form>
+          </div>
+
+          <!-- RIGHT: Trip Tariff & Service Guarantee Card -->
+          <div class="card trip-info-card">
+            <div class="card-header" style="margin-bottom: 0.75rem;">
+              <div class="card-header-badge">
+                <span class="status-indicator-dot"></span>
+                <span>Live Database &amp; Instant Dispatch</span>
+              </div>
+              <h3 class="card-title">Trip Tariff &amp; Ride Details</h3>
+              <span class="card-sub">Fixed ₹80/KM rate across all 38 Tamil Nadu districts</span>
+            </div>
+
+            <!-- Route Indicator Box -->
+            <div class="route-display-box">
+              <div class="route-node-info">
+                <span class="node-tag pickup-tag">PICKUP</span>
+                <span class="node-place" id="mapPickupName">Salem, Tamil Nadu</span>
+              </div>
+              <div class="route-arrow-wrap">
+                <span class="route-arrow">➔</span>
+                <span class="route-km-pill" id="mapMidpointDistance">-- KM</span>
+              </div>
+              <div class="route-node-info">
+                <span class="node-tag drop-tag">DESTINATION</span>
+                <span class="node-place" id="mapDestName">Select Destination</span>
+              </div>
+            </div>
+
+            <!-- Direct Google Maps Driving Route Link -->
+            <div style="margin-top: 0.65rem; margin-bottom: 0.85rem; text-align: center;">
+              <a href="#" target="_blank" rel="noopener noreferrer" class="btn-gmaps-link btn-block" id="openGoogleMapsBtn" style="display: none;">
+                <span>🗺️ View Live Route in Google Maps ↗</span>
+              </a>
+            </div>
+
+            <!-- Highlights List -->
+            <div class="trip-benefits-list">
+              <div class="benefit-item">
+                <div class="benefit-icon">🚖</div>
+                <div class="benefit-text">
+                  <strong>₹80 / KM Fixed Tariff Guarantee</strong>
+                  <p>Zero surge pricing, zero hidden night charges. Purely pay for the distance travelled.</p>
+                </div>
+              </div>
+              <div class="benefit-item">
+                <div class="benefit-icon">⚡</div>
+                <div class="benefit-text">
+                  <strong>Instant 24/7 Driver Dispatch</strong>
+                  <p>AC Sedans, Ertiga SUVs &amp; Innovas ready at Salem Central Hub for immediate dispatch.</p>
+                </div>
+              </div>
+              <div class="benefit-item">
+                <div class="benefit-icon">💾</div>
+                <div class="benefit-text">
+                  <strong>Cloud Database Connected</strong>
+                  <p>All bookings are saved directly to the database with confirmed booking code.</p>
+                </div>
+              </div>
+              <div class="benefit-item">
+                <div class="benefit-icon">📞</div>
+                <div class="benefit-text">
+                  <strong>Direct Dispatch Hotline</strong>
+                  <p>Customer Support: <a href="tel:+917904974485" class="highlight-link">+91 79049 74485</a></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Route Quick Stats Strip -->
+            <div class="route-stats-strip">
+              <div class="stat-item">
+                <span class="stat-label">Estimated Distance</span>
+                <span class="stat-value" id="statsDistance">-- KM</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Standard Fare</span>
+                <span class="stat-value highlight-gold" id="statsFare">₹0</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Tariff Formula</span>
+                <span class="stat-value font-mono">Distance × ₹80</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ============================================================= -->
+        <!-- FARE CARD / TRIP SUMMARY -->
+        <!-- ============================================================= -->
+        <div class="fare-card-wrapper" id="fareSummaryWrapper">
+          <div class="card fare-summary-card">
+            <div class="fare-card-header">
+              <div class="badge-tag">OFFICIAL ESTIMATE</div>
+              <h3 class="fare-title">TRIP SUMMARY</h3>
+              <p class="fare-sub">Transparent ₹80/KM fixed tariff between any locations in Tamil Nadu</p>
+            </div>
+
+            <div class="fare-details-grid">
+              <div class="fare-detail-col">
+                <span class="detail-label">Pickup Location</span>
+                <span class="detail-value" id="summaryPickup">Salem, Tamil Nadu</span>
+              </div>
+
+              <div class="fare-detail-col">
+                <span class="detail-label">Drop Location (Destination)</span>
+                <span class="detail-value" id="summaryDestination">Not Selected</span>
+              </div>
+
+              <div class="fare-detail-col">
+                <span class="detail-label">Distance Between Places</span>
+                <span class="detail-value highlight-metric" id="summaryDistance">-- KM</span>
+              </div>
+
+              <div class="fare-detail-col">
+                <span class="detail-label">Fixed Rate</span>
+                <span class="detail-value">₹80 / KM</span>
+              </div>
+            </div>
+
+            <div class="fare-total-banner">
+              <div class="total-text-group">
+                <span class="total-label">Total Amount (@ ₹80/KM)</span>
+                <span class="total-formula" id="summaryFormula">Select destination to calculate</span>
+              </div>
+              <div class="total-amount-group">
+                <span class="total-currency">₹</span>
+                <span class="total-amount" id="summaryFare">0</span>
+              </div>
+            </div>
+
+            <div class="fare-actions">
+              <button type="button" class="btn btn-primary btn-xl btn-block" id="bookRideBtn" disabled>
+                Book This Ride
+              </button>
+              <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-block" id="summaryGoogleMapsBtn" style="display: none; margin-top: 0.65rem; border-color: rgba(255, 184, 0, 0.4); color: var(--accent-gold); font-weight: 700;">
+                <span>🗺️ Open Driving Directions in Google Maps ↗</span>
+              </a>
+              <p class="fare-disclaimer-small">
+                * Zero hidden fees. Tolls &amp; interstate permits (if applicable) are paid as per actual receipts.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Support Callout Strip -->
+    <section class="booking-support-strip">
+      <div class="container text-center">
+        <p>Need a customized multi-day tour package or airport pickup? <a href="contact.html">Talk to our 24/7 Dispatch Desk</a> or call <a href="tel:+917904974485">+91 79049 74485</a></p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================================================================= -->
+  <!-- BOOKING CONFIRMATION MODAL -->
+  <!-- ================================================================= -->
+  <div class="modal-backdrop" id="bookingModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" style="display:none;">
+    <div class="modal-dialog">
+      <div class="modal-content card">
+        <div class="modal-header">
+          <div>
+            <span class="modal-tag">FINAL STEP</span>
+            <h3 class="modal-title" id="modalTitle">Ride Summary</h3>
+          </div>
+          <button type="button" class="modal-close-btn" id="modalCloseBtn" aria-label="Close modal">&times;</button>
+        </div>
+
+        <div class="modal-body">
+          <div class="modal-summary-box">
+            <div class="modal-row">
+              <span class="modal-row-label">Pickup</span>
+              <span class="modal-row-val" id="modalPickupText">Salem</span>
+            </div>
+            <div class="modal-row">
+              <span class="modal-row-label">Destination</span>
+              <span class="modal-row-val" id="modalDestText">Yercaud</span>
+            </div>
+            <div class="modal-row">
+              <span class="modal-row-label">Estimated Distance</span>
+              <span class="modal-row-val" id="modalDistanceText">32 KM</span>
+            </div>
+            <div class="modal-row">
+              <span class="modal-row-label">Rate</span>
+              <span class="modal-row-val">₹80 / KM</span>
+            </div>
+            <div class="modal-divider"></div>
+            <div class="modal-row modal-total-row">
+              <span class="modal-total-label">Estimated Fare</span>
+              <span class="modal-total-val highlight-gold" id="modalFareText">₹2,560</span>
+            </div>
+          </div>
+
+          <form id="confirmBookingForm" class="modal-form" onsubmit="event.preventDefault();">
+            <div class="form-group">
+              <label for="custName" class="form-label">Customer Name *</label>
+              <input 
+                type="text" 
+                id="custName" 
+                class="form-input" 
+                placeholder="Enter your full name" 
+                required 
+                autocomplete="name"
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="custMobile" class="form-label">Mobile Number *</label>
+              <input 
+                type="tel" 
+                id="custMobile" 
+                class="form-input" 
+                placeholder="10-digit mobile number (e.g. 7904974485)" 
+                pattern="[0-9]{10}"
+                maxlength="10"
+                required 
+                autocomplete="tel"
+                inputmode="numeric"
+              >
+              <span class="input-hint">We will connect via WhatsApp to confirm vehicle allocation.</span>
+            </div>
+
+            <div class="modal-actions">
+              <button type="submit" class="btn btn-primary btn-block btn-lg" id="confirmRideBtn">
+                Confirm Booking &amp; Send WhatsApp
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Bottom Sticky CTA -->
+  <div class="mobile-sticky-bar" id="mobileStickyBar">
+    <div class="mobile-sticky-info">
+      <span class="mobile-sticky-label">Estimated Fare</span>
+      <span class="mobile-sticky-price" id="mobileStickyPrice">₹0</span>
+    </div>
+    <div class="mobile-sticky-actions">
+      <a href="tel:+917904974485" class="mobile-sticky-call-btn" title="Call Dispatch Desk" aria-label="Call Dispatch Desk">
+        <span>📞 Call</span>
+      </a>
+      <button type="button" class="btn btn-primary btn-sm" id="mobileStickyBtn">
+        Book Ride
+      </button>
+    </div>
+  </div>
+
+  <!-- ================================================================= -->
+  <!-- FOOTER -->
+  <!-- ================================================================= -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-col footer-brand">
+        <div class="logo">
+          <span class="logo-badge">MITHARA</span>
+          <span class="logo-sub">TRAVEL AGENCY</span>
+        </div>
+        <p class="footer-desc">
+          Mithara Travel Agency — Salem's premier distance-based cab service. Reliable, punctual, and transparent rides across Tamil Nadu and South India at a fixed rate of ₹80/km.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="book.html">Book a Ride</a></li>
+          <li><a href="how-it-works.html">How It Works</a></li>
+          <li><a href="why-us.html">Why Choose Us</a></li>
+          <li><a href="routes.html">Popular Routes</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">Contact &amp; Hub</h4>
+        <ul class="footer-links">
+          <li>Salem Central Hub, Tamil Nadu</li>
+          <li><a href="tel:+917904974485">+91 79049 74485</a></li>
+          <li><a href="https://wa.me/917904974485" target="_blank" rel="noopener">WhatsApp Dispatch</a></li>
+          <li>Available 24/7 for Outstation &amp; Local</li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">Legal &amp; Policies</h4>
+        <ul class="footer-links">
+          <li><a href="about.html">Terms &amp; Conditions</a></li>
+          <li><a href="about.html">Privacy Policy</a></li>
+          <li><a href="about.html">Pricing Transparency</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; 2026 Mithara Travel Agency. All rights reserved. Built for Salem, Tamil Nadu.</p>
+    </div>
+  </footer>
+
+
+  <!-- Floating Quick Action Buttons for Mobile -->
+  <div class="mobile-fab-wrap" id="mobileFabWrap" aria-label="Quick contact actions">
+    <a href="https://wa.me/917904974485" target="_blank" rel="noopener noreferrer" class="fab-btn fab-whatsapp" title="Chat on WhatsApp" aria-label="WhatsApp Dispatch">
+      💬
+    </a>
+    <a href="tel:+917904974485" class="fab-btn fab-call" title="Call Dispatch Hotline" aria-label="Call Dispatch Hotline">
+      📞
+    </a>
+  </div>
+
+  <!-- Database Storage Engine -->
+  <script src="database.js"></script>
+
+  <!-- Main JavaScript File -->
+  <script src="script.js"></script>
+</body>
+</html>

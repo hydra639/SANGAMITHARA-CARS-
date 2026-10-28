@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore popular cab routes from Mithara Travel Agency Salem across Tamil Nadu. Fixed ₹80/km transparent pricing to Yercaud, Coimbatore, Chennai, Madurai, Ooty, and Kanyakumari.">
+  <title>Popular Routes | Mithara Travel Agency - Fixed ₹80/km Across Tamil Nadu</title>
+  
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ================================================================= -->
+  <!-- HEADER & NAVIGATION -->
+  <!-- ================================================================= -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-container">
+      <a href="index.html" class="logo" aria-label="Mithara Travel Agency Home">
+        <span class="logo-badge">MITHARA</span>
+        <span class="logo-sub">TRAVEL AGENCY</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Primary Navigation">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="book.html" class="nav-link">Book a Ride</a></li>
+          <li><a href="how-it-works.html" class="nav-link">How It Works</a></li>
+          <li><a href="why-us.html" class="nav-link">Why Choose Us</a></li>
+          <li><a href="routes.html" class="nav-link active">Popular Routes</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="book.html" class="btn btn-primary header-cta">Book Now</a>
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="mobileDrawer">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Overlay -->
+  <div class="mobile-drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="mobile-drawer" id="mobileDrawer" aria-label="Mobile Navigation Menu">
+    <div class="drawer-header">
+      <div class="logo">
+        <span class="logo-badge">MITHARA</span>
+        <span class="logo-sub">TRAVEL AGENCY</span>
+      </div>
+      <button class="drawer-close" id="drawerClose" aria-label="Close Navigation Menu">&times;</button>
+    </div>
+    <ul class="drawer-nav-list">
+      <li><a href="index.html" class="drawer-link">Home</a></li>
+      <li><a href="book.html" class="drawer-link">Book a Ride</a></li>
+      <li><a href="how-it-works.html" class="drawer-link">How It Works</a></li>
+      <li><a href="why-us.html" class="drawer-link">Why Choose Us</a></li>
+      <li><a href="routes.html" class="drawer-link active">Popular Routes</a></li>
+      <li><a href="about.html" class="drawer-link">About</a></li>
+      <li><a href="contact.html" class="drawer-link">Contact</a></li>
+    </ul>
+    <div class="drawer-footer">
+      <a href="book.html" class="btn btn-primary btn-block drawer-cta">Book a Ride Now</a>
+    </div>
+  </aside>
+
+  <main>
+    <!-- ================================================================= -->
+    <!-- PAGE HERO HEADER -->
+    <!-- ================================================================= -->
+    <section class="page-hero">
+      <div class="container text-center">
+        <div class="pill-badge">
+          <span class="pulse-dot"></span>
+          <span>Intercity Corridors • Fixed Rate: ₹80 / KM</span>
+        </div>
+        <h1 class="page-title">Popular Routes <span class="highlight-gold">From Salem</span></h1>
+        <p class="page-subtitle">
+          Frequent intercity and tourist destinations across Tamil Nadu. Click any route to automatically pre-fill and calculate on our booking page.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- ROUTE CATALOG GRID -->
+    <!-- ================================================================= -->
+    <section class="section">
+      <div class="container">
+        
+        <div class="routes-grid">
+          
+          <!-- Route 1: Yercaud -->
+          <div class="card route-card" data-category="hills">
+            <div class="route-badge">Hill Station</div>
+            <div class="route-cities">
+              <span class="route-origin">Salem</span>
+              <span class="route-arrow">➔</span>
+              <span class="route-target">Yercaud</span>
+            </div>
+            <div class="route-metrics">
+              <div class="route-metric">
+                <span class="metric-lbl">Est. Distance</span>
+                <span class="metric-val">~32 KM</span>
+              </div>
+              <div class="route-metric">
+                <span class="metric-lbl">Est. Fare</span>
+                <span class="metric-val highlight-gold">₹2,560</span>
+              </div>
+            </div>
+            <a href="book.html?dest=Yercaud" class="btn btn-outline btn-sm btn-block select-route-btn" data-destination="Yercaud">
+              Select This Route ➔
+            </a>
+          </div>
+
+          <!-- Route 2: Namakkal -->
+          <div class="card route-card" data-category="industrial">
+            <div class="route-badge">Business &amp; Heritage</div>
+            <div class="route-cities">
+              <span class="route-origin">Salem</span>
+              <span class="route-arrow">➔</span>
+              <span class="route-target">Namakkal</span>
+            </div>
+            <div class="route-metrics">
+              <div class="route-metric">
+                <span class="metric-lbl">Est. Distance</span>
+                <span class="metric-val">~52 KM</span>
+              </div>
+              <div class="route-metric">
+                <span class="metric-lbl">Est. Fare</span>
+                <span class="metric-val highlight-gold">₹4,160</span>
+              </div>
+            </div>
+            <a href="book.html?dest=Namakkal" class="btn btn-outline btn-sm btn-block select-route-btn" data-destination="Namakkal">
+              Select This Route ➔
+            </a>
+          </div>
+
+          <!-- Route 3: Erode -->
+          <div class="card route-card" data-category="industrial">
+            <div class="route-badge">Textile City</div>
+            <div class="route-cities">
+              <span class="route-origin">Salem</span>
+              <span class="route-arrow">➔</span>
+              <span class="route-target">Erode</span>
+            </div>
+            <div class="route-metrics">
+              <div class="route-metric">
+                <span class="metric-lbl">Est. Distance</span>
+                <span class="metric-val">~65 KM</span>
+              </div>
+              <div class="route-metric">
+                <span class="metric-lbl">Est. Fare</span>
+                <span class="metric-val highlight-gold">₹5,200</span>
+              </div>
+            </div>
+            <a href="book.html?dest=Erode" class="btn btn-outline btn-sm btn-block select-route-btn" data-destination="Erode">
+              Select This Route ➔
+            </a>
+          </div>
+
+          <!-- Route 4: Dharmapuri / Hogenakkal -->
+          <div class="card route-card" data-category="hills">
+            <div class="route-badge">Waterfalls Gateway</div>
+            <div class="route-cities">
+              <span class="route-origin">Salem</span>
+              <span class="route-arrow">➔</span>
+              <span class="route-target">Dharmapuri</span>
+            </div>
+            <div class="route-metrics">
+              <div class="route-metric">
+                <span class="metric-lbl">Est. Distance</span>
+                <span class="metric-val">~68 KM</span>
+              </div>
+              <div class="route-metric">
+                <span class="metric-lbl">Est. Fare</span>
+                <span class="metric-val highlight-gold">₹5,440</span>
+              </div>
+            </div>
+            <a href="book.html?dest=Dharmapuri" class="btn btn-outline btn-sm btn-block select-route-btn" data-destination="Dharmapuri">
+              Select This Route ➔
+            </a>
+          </div>
+
+          <!-- Route 5: Tiruppur -->
+          <div class="card route-card" data-category="industrial">
+            <div class="route-badge">Knitwear Capital</div>
+            <div class="route-cities">
+              <span class="route-origin">Salem</span>
+              <span class="route-arrow">➔</span>
+              <span class="route-target">Tiruppur</span>
+            </div>
+            <div class="route-metrics">
+              <div class="route-metric">
+                <span class="metric-lbl">Est. Distance</span>
+                <span class="metric-val">~115 KM</span>
+              </div>
+              <div class="route-metric">
+                <span class="metric-lbl">Est. Fare</span>
+                <span class="metric-val highlight-gold">₹9,200</span>
+              </div>
+            </div>
+            <a href="book.html?dest=Tiruppur" class="btn btn-outline btn-sm btn-block select-route-btn" data-destination="Tiruppur">
+              Select This Route ➔
+            </a>
+          </div>
+
+          <!-- Route 6: Trichy / Srirangam -->
+          <div class="card route-card" data-category="temple">
+            <div class="route-badge">Central &amp; Temple Hub</div>
+            <div class="route-cities">
+              <span class="route-origin">Salem</span>
+              <span class="route-arrow">➔</span>
+              <span class="route-target">Trichy</span>
+            </div>
+            <div class="route-metrics">
+              <div class="route-metric">
+                <span class="metric-lbl">Est. Distance</span>
+                <span class="metric-val">~140 KM</span>
+              </div>
+              <div class="route-metric">
+                <span class="metric-lbl">Est. Fare</span>
+                <span class="metric-val highlight-gold">₹11,200</span>
+              </div>
+            </div>
+            <a href="book.html?dest=Tiruchirappalli" class="btn btn-outline btn-sm btn-block select-route-btn" data-destination="Tiruchirappalli">
+              Select This Route ➔
+            </a>
+          </div>
+
+          <!-- Route 7: Coimbatore -->
+          <div class="card route-card" data-category="metro">
+            <div class="route-badge">Industrial Metro</div>
+            <div class="route-cities">
+              <span class="route-origin">Salem</span>
+              <span class="route-arrow">➔</span>
+              <span class="route-target">Coimbatore</span>
+            </div>
+            <div class="route-metrics">
+              <div class="route-metric">
+                <span class="metric-lbl">Est. Distance</span>
+                <span class="metric-val">~165 KM</span>
+              </div>
+              <div class="route-metric">
+                <span class="metric-lbl">Est. Fare</span>
+                <span class="metric-val highlight-gold">₹13,200</span>
+              </div>
+            </div>
+            <a href="book.html?dest=Coimbatore" class="btn btn-outline btn-sm btn-block select-route-btn" data-destination="Coimbatore">
+              Select This Route ➔
+            </a>
+          </div>
+
+          <!-- Route 8: Bangalore -->
+          <div class="card route-card" data-category="metro">
+            <div class="route-badge">IT Capital Hub</div>
+            <div class="route-cities">
+              <span class="route-origin">Salem</span>
+              <span class="route-arrow">➔</span>
+              <span class="route-target">Bangalore</span>
+            </div>
+            <div class="route-metrics">
+              <div class="route-metric">
+                <span class="metric-lbl">Est. Distance</span>
+                <span class="metric-val">~205 KM</span>
+              </div>
+              <div class="route-metric">
+                <span class="metric-lbl">Est. Fare</span>
+                <span class="metric-val highlight-gold">₹16,400</span>
+              </div>
+            </div>
+            <a href="book.html?dest=Bangalore" class="btn btn-outline btn-sm btn-block select-route-btn" data-destination="Bangalore">
+              Select This Route ➔
+            </a>
+          </div>
+
+          <!-- Route 9: Ooty -->
+          <div class="card route-card" data-category="hills">
+            <div class="route-badge">Queen of Hill Stations</div>
+            <div class="route-cities">
+              <span class="route-origin">Salem</span>
+              <span class="route-arrow">➔</span>
+              <span class="route-target">Ooty</span>
+            </div>
+            <div class="route-metrics">
+              <div class="route-metric">
+                <span class="metric-lbl">Est. Distance</span>
+                <span class="metric-val">~220 KM</span>
+              </div>
+              <div class="route-metric">
+                <span class="metric-lbl">Est. Fare</span>
+                <span class="metric-val highlight-gold">₹17,600</span>
+              </div>
+            </div>
+            <a href="book.html?dest=Ooty" class="btn btn-outline btn-sm btn-block select-route-btn" data-destination="Ooty">
+              Select This Route ➔
+            </a>
+          </div>
+
+          <!-- Route 10: Madurai -->
+          <div class="card route-card" data-category="temple">
+            <div class="route-badge">Temple City / Cultural Hub</div>
+            <div class="route-cities">
+              <span class="route-origin">Salem</span>
+              <span class="route-arrow">➔</span>
+              <span class="route-target">Madurai</span>
+            </div>
+            <div class="route-metrics">
+              <div class="route-metric">
+                <span class="metric-lbl">Est. Distance</span>
+                <span class="metric-val">~235 KM</span>
+              </div>
+              <div class="route-metric">
+                <span class="metric-lbl">Est. Fare</span>
+                <span class="metric-val highlight-gold">₹18,800</span>
+              </div>
+            </div>
+            <a href="book.html?dest=Madurai" class="btn btn-outline btn-sm btn-block select-route-btn" data-destination="Madurai">
+              Select This Route ➔
+            </a>
+          </div>
+
+          <!-- Route 11: Kodaikanal -->
+          <div class="card route-card" data-category="hills">
+            <div class="route-badge">Princess of Hill Stations</div>
+            <div class="route-cities">
+              <span class="route-origin">Salem</span>
+              <span class="route-arrow">➔</span>
+              <span class="route-target">Kodaikanal</span>
+            </div>
+            <div class="route-metrics">
+              <div class="route-metric">
+                <span class="metric-lbl">Est. Distance</span>
+                <span class="metric-val">~245 KM</span>
+              </div>
+              <div class="route-metric">
+                <span class="metric-lbl">Est. Fare</span>
+                <span class="metric-val highlight-gold">₹19,600</span>
+              </div>
+            </div>
+            <a href="book.html?dest=Kodaikanal" class="btn btn-outline btn-sm btn-block select-route-btn" data-destination="Kodaikanal">
+              Select This Route ➔
+            </a>
+          </div>
+
+          <!-- Route 12: Chennai -->
+          <div class="card route-card" data-category="metro">
+            <div class="route-badge">State Capital Metro</div>
+            <div class="route-cities">
+              <span class="route-origin">Salem</span>
+              <span class="route-arrow">➔</span>
+              <span class="route-target">Chennai</span>
+            </div>
+            <div class="route-metrics">
+              <div class="route-metric">
+                <span class="metric-lbl">Est. Distance</span>
+                <span class="metric-val">~345 KM</span>
+              </div>
+              <div class="route-metric">
+                <span class="metric-lbl">Est. Fare</span>
+                <span class="metric-val highlight-gold">₹27,600</span>
+              </div>
+            </div>
+            <a href="book.html?dest=Chennai" class="btn btn-outline btn-sm btn-block select-route-btn" data-destination="Chennai">
+              Select This Route ➔
+            </a>
+          </div>
+
+          <!-- Route 13: Rameswaram -->
+          <div class="card route-card" data-category="temple">
+            <div class="route-badge">Pilgrimage Island</div>
+            <div class="route-cities">
+              <span class="route-origin">Salem</span>
+              <span class="route-arrow">➔</span>
+              <span class="route-target">Rameswaram</span>
+            </div>
+            <div class="route-metrics">
+              <div class="route-metric">
+                <span class="metric-lbl">Est. Distance</span>
+                <span class="metric-val">~395 KM</span>
+              </div>
+              <div class="route-metric">
+                <span class="metric-lbl">Est. Fare</span>
+                <span class="metric-val highlight-gold">₹31,600</span>
+              </div>
+            </div>
+            <a href="book.html?dest=Rameswaram" class="btn btn-outline btn-sm btn-block select-route-btn" data-destination="Rameswaram">
+              Select This Route ➔
+            </a>
+          </div>
+
+          <!-- Route 14: Kanyakumari -->
+          <div class="card route-card" data-category="temple">
+            <div class="route-badge">Southernmost Tip</div>
+            <div class="route-cities">
+              <span class="route-origin">Salem</span>
+              <span class="route-arrow">➔</span>
+              <span class="route-target">Kanyakumari</span>
+            </div>
+            <div class="route-metrics">
+              <div class="route-metric">
+                <span class="metric-lbl">Est. Distance</span>
+                <span class="metric-val">~445 KM</span>
+              </div>
+              <div class="route-metric">
+                <span class="metric-lbl">Est. Fare</span>
+                <span class="metric-val highlight-gold">₹35,600</span>
+              </div>
+            </div>
+            <a href="book.html?dest=Kanyakumari" class="btn btn-outline btn-sm btn-block select-route-btn" data-destination="Kanyakumari">
+              Select This Route ➔
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Custom Destination Box -->
+        <div class="process-cta-box card" style="margin-top: 3.5rem;">
+          <div class="process-cta-text">
+            <h3>Traveling to another town or village?</h3>
+            <p>Our database supports all 38 districts of Tamil Nadu. Enter any custom destination or street to compute your exact road kilometers and fare.</p>
+          </div>
+          <a href="book.html" class="btn btn-primary btn-lg">Calculate Any Route ➔</a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ================================================================= -->
+  <!-- FOOTER -->
+  <!-- ================================================================= -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-col footer-brand">
+        <div class="logo">
+          <span class="logo-badge">MITHARA</span>
+          <span class="logo-sub">TRAVEL AGENCY</span>
+        </div>
+        <p class="footer-desc">
+          Mithara Travel Agency — Salem's premier distance-based cab service. Reliable, punctual, and transparent rides across Tamil Nadu and South India at a fixed rate of ₹80/km.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="book.html">Book a Ride</a></li>
+          <li><a href="how-it-works.html">How It Works</a></li>
+          <li><a href="why-us.html">Why Choose Us</a></li>
+          <li><a href="routes.html">Popular Routes</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">Contact &amp; Hub</h4>
+        <ul class="footer-links">
+          <li>Salem Central Hub, Tamil Nadu</li>
+          <li><a href="tel:+917904974485">+91 79049 74485</a></li>
+          <li><a href="https://wa.me/917904974485" target="_blank" rel="noopener">WhatsApp Dispatch</a></li>
+          <li>Available 24/7 for Outstation &amp; Local</li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">Legal &amp; Policies</h4>
+        <ul class="footer-links">
+          <li><a href="about.html">Terms &amp; Conditions</a></li>
+          <li><a href="about.html">Privacy Policy</a></li>
+          <li><a href="about.html">Pricing Transparency</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; 2026 Mithara Travel Agency. All rights reserved. Built for Salem, Tamil Nadu.</p>
+    </div>
+  </footer>
+
+  <!-- Main JavaScript File -->
+  <script src="script.js"></script>
+</body>
+</html>

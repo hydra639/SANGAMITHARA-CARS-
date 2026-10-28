@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mithara Dispatch &amp; Admin Portal | Second Management Website</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="admin.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ====================================================================== -->
+  <!-- 1. AUTHENTICATION GATE (LOGIN SCREEN)                                  -->
+  <!-- Username: pream | Password: pream123                                   -->
+  <!-- ====================================================================== -->
+  <section class="login-view" id="loginView">
+    <div class="login-card">
+      <div class="login-brand">
+        <div class="login-badge">
+          <span>🔒 Internal Staff Access</span>
+        </div>
+        <h1 class="login-title">MITHARA DISPATCH</h1>
+        <p class="login-subtitle">Administrative Management Portal &bull; Second Website</p>
+      </div>
+
+      <div class="login-alert error" id="loginAlert">
+        <span>⚠️</span>
+        <span id="loginAlertText">Invalid username or password.</span>
+      </div>
+
+      <form id="loginForm" autocomplete="off">
+        <div class="form-group">
+          <label class="form-label" for="loginUsername">Admin Username</label>
+          <div class="input-container">
+            <span class="input-icon">👤</span>
+            <input 
+              type="text" 
+              id="loginUsername" 
+              class="form-input" 
+              placeholder="Enter admin username" 
+              required 
+              autofocus
+            >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="loginPassword">Security Password</label>
+          <div class="input-container">
+            <span class="input-icon">🔑</span>
+            <input 
+              type="password" 
+              id="loginPassword" 
+              class="form-input" 
+              placeholder="Enter security password" 
+              required
+            >
+            <button type="button" class="toggle-pwd-btn" id="togglePasswordBtn" title="Toggle password view">👁️</button>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--text-muted);">
+          <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+            <input type="checkbox" id="rememberMe" style="accent-color: var(--primary); cursor: pointer;">
+            <span>Remember this device</span>
+          </label>
+          <span style="color: var(--text-dim); font-size: 0.8rem;">Protected Session</span>
+        </div>
+
+        <button type="submit" class="btn-primary">
+          <span>Unlock Admin Portal</span>
+          <span>&rarr;</span>
+        </button>
+      </form>
+
+      <div class="login-footer-hint">
+        🛡️ Authorized personnel only. All access attempts and database changes are logged securely.
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================== -->
+  <!-- 2. MAIN ADMIN DASHBOARD (PROTECTED VIEW)                                -->
+  <!-- ====================================================================== -->
+  <div class="admin-view" id="adminView">
+
+    <!-- Top Sticky Header -->
+    <header class="admin-navbar">
+      <div class="navbar-container">
+        <div class="navbar-brand">
+          <div class="brand-icon">M</div>
+          <div class="brand-info">
+            <div class="brand-title">
+              MITHARA TRAVELS
+              <span class="brand-badge">ADMIN CONTROL</span>
+            </div>
+            <div class="brand-sub">Master Database &amp; Customer Registration Hub</div>
+          </div>
+        </div>
+
+        <div class="navbar-actions">
+          <div class="sync-status-indicator" id="syncStatus">
+            <span class="sync-dot"></span>
+            <span id="syncStatusText">Cloud Live</span>
+          </div>
+
+          <button class="btn-icon" id="btnRefreshCloud" title="Sync with Supabase Cloud">
+            <span>🔄 Sync Cloud</span>
+          </button>
+
+          <div class="user-profile-badge">
+            <div class="user-avatar">P</div>
+            <span>pream</span>
+          </div>
+
+          <button class="btn-icon btn-logout" id="btnLogout" title="Log out from Admin">
+            <span>🚪 Logout</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="admin-main">
+
+      <!-- Metrics Overview Cards -->
+      <section class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-info">
+            <span class="stat-label">Registered Users</span>
+            <span class="stat-value" id="statTotalUsers">0</span>
+            <span class="stat-sub">Customer accounts database</span>
+          </div>
+          <div class="stat-icon-wrap stat-icon-gold">👥</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-info">
+            <span class="stat-label">Total Bookings</span>
+            <span class="stat-value" id="statTotalBookings">0</span>
+            <span class="stat-sub">Cab trips logged</span>
+          </div>
+          <div class="stat-icon-wrap stat-icon-blue">🚕</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-info">
+            <span class="stat-label">Pending Rides</span>
+            <span class="stat-value" id="statPendingBookings" style="color: #facc15;">0</span>
+            <span class="stat-sub">Requires dispatch action</span>
+          </div>
+          <div class="stat-icon-wrap stat-icon-purple">⏳</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-info">
+            <span class="stat-label">Total Fare Revenue</span>
+            <span class="stat-value" id="statTotalRevenue" style="color: #4ade80;">₹0</span>
+            <span class="stat-sub">Estimated trip volume</span>
+          </div>
+          <div class="stat-icon-wrap stat-icon-green">💰</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-info">
+            <span class="stat-label">Active Inquiries</span>
+            <span class="stat-value" id="statTotalInquiries">0</span>
+            <span class="stat-sub">Customer requests</span>
+          </div>
+          <div class="stat-icon-wrap stat-icon-gold">💬</div>
+        </div>
+      </section>
+
+      <!-- Navigation Tabs -->
+      <nav class="tab-navigation">
+        <button class="tab-btn active" data-tab="registrations">
+          <span>👥 Registered Customers (Register Data)</span>
+          <span class="tab-badge" id="badgeUsersCount">0</span>
+        </button>
+        <button class="tab-btn" data-tab="bookings">
+          <span>🚕 Cab Bookings</span>
+          <span class="tab-badge" id="badgeBookingsCount">0</span>
+        </button>
+        <button class="tab-btn" data-tab="inquiries">
+          <span>💬 Inquiries &amp; Quotes</span>
+          <span class="tab-badge" id="badgeInquiriesCount">0</span>
+        </button>
+        <button class="tab-btn" data-tab="settings">
+          <span>⚙️ Database &amp; System Tools</span>
+        </button>
+      </nav>
+
+      <!-- ================================================================ -->
+      <!-- TAB 1: REGISTERED CUSTOMERS DATA                                 -->
+      <!-- ================================================================ -->
+      <div class="tab-panel active" id="tab-registrations">
+        <div class="toolbar">
+          <div class="search-filter-group">
+            <div class="search-input-wrap">
+              <span class="search-input-icon">🔍</span>
+              <input type="text" id="regSearchInput" placeholder="Search by name, phone, email, city...">
+            </div>
+            <select class="filter-select" id="regStatusFilter">
+              <option value="all">All Account Statuses</option>
+              <option value="Active">Active Customers</option>
+              <option value="Inactive">Inactive / Paused</option>
+            </select>
+          </div>
+
+          <div class="action-btn-group">
+            <button class="btn-accent" id="btnOpenAddUserModal">
+              <span>➕ Register New Customer</span>
+            </button>
+            <button class="btn-secondary" id="btnExportUsersCSV" title="Export Registered Customers to CSV">
+              <span>📥 Export CSV (Excel)</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="table-card">
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Reg ID</th>
+                  <th>Customer Name &amp; Notes</th>
+                  <th>Contact Info</th>
+                  <th>City / District</th>
+                  <th>Membership</th>
+                  <th>Status</th>
+                  <th>Rides &amp; Date</th>
+                  <th>Quick Actions</th>
+                </tr>
+              </thead>
+              <tbody id="registrationsTableBody">
+                <!-- Injected via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================================================================ -->
+      <!-- TAB 2: CAB BOOKINGS                                              -->
+      <!-- ================================================================ -->
+      <div class="tab-panel" id="tab-bookings">
+        <div class="toolbar">
+          <div class="search-filter-group">
+            <div class="search-input-wrap">
+              <span class="search-input-icon">🔍</span>
+              <input type="text" id="bookingSearchInput" placeholder="Search customer, phone, booking ID, location...">
+            </div>
+            <select class="filter-select" id="bookingStatusFilter">
+              <option value="all">All Booking Statuses</option>
+              <option value="Pending">Pending</option>
+              <option value="Confirmed">Confirmed</option>
+              <option value="Completed">Completed</option>
+              <option value="Cancelled">Cancelled</option>
+            </select>
+          </div>
+
+          <div class="action-btn-group">
+            <button class="btn-secondary" id="btnExportBookingsCSV">
+              <span>📥 Export Bookings CSV</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="table-card">
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Booking ID &amp; Date</th>
+                  <th>Customer</th>
+                  <th>Route (Pickup &rarr; Drop)</th>
+                  <th>Distance &amp; Rate</th>
+                  <th>Est. Fare</th>
+                  <th>Current Status</th>
+                  <th>Update Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="bookingsTableBody">
+                <!-- Injected via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================================================================ -->
+      <!-- TAB 3: CONTACT INQUIRIES                                         -->
+      <!-- ================================================================ -->
+      <div class="tab-panel" id="tab-inquiries">
+        <div class="toolbar">
+          <div class="search-filter-group">
+            <div class="search-input-wrap">
+              <span class="search-input-icon">🔍</span>
+              <input type="text" id="inquirySearchInput" placeholder="Search inquiry name, phone, message...">
+            </div>
+            <select class="filter-select" id="inquiryStatusFilter">
+              <option value="all">All Statuses</option>
+              <option value="New">New</option>
+              <option value="Contacted">Contacted</option>
+              <option value="Converted">Converted</option>
+              <option value="Closed">Closed</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-card">
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Inquiry ID</th>
+                  <th>Customer Details</th>
+                  <th>Requested Route</th>
+                  <th>Message / Requirements</th>
+                  <th>Status</th>
+                  <th>Update</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="inquiriesTableBody">
+                <!-- Injected via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================================================================ -->
+      <!-- TAB 4: SYSTEM SETTINGS & TOOLS                                   -->
+      <!-- ================================================================ -->
+      <div class="tab-panel" id="tab-settings">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
+          
+          <div class="table-card" style="padding: 1.5rem;">
+            <h3 style="font-size: 1.15rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem;">☁️ Supabase Cloud Synchronization</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+              Two-way synchronization with live PostgreSQL Cloud Database. All registered data and bookings automatically sync in real-time.
+            </p>
+            <div style="background: var(--bg-input); padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); margin-bottom: 1rem; font-size: 0.825rem;">
+              <div style="margin-bottom: 0.4rem;"><strong style="color: #fff;">Project Endpoint:</strong> https://ujchidcnanptczaouwlg.supabase.co</div>
+              <div><strong style="color: #fff;">Status:</strong> <span style="color: #4ade80;">Active &amp; Connected</span></div>
+            </div>
+            <button class="btn-primary" onclick="window.AdminApp.exportJSON()">
+              <span>💾 Download Full Database Backup (.JSON)</span>
+            </button>
+          </div>
+
+          <div class="table-card" style="padding: 1.5rem;">
+            <h3 style="font-size: 1.15rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem;">⚙️ Tariff &amp; Agency Configuration</h3>
+            <div style="display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+              <div><strong>Agency Name:</strong> Mithara Travel Agency</div>
+              <div><strong>Dispatch Hotline:</strong> +91 79049 74485</div>
+              <div><strong>Base Tariff:</strong> ₹80 / KM (Fixed Rate)</div>
+              <div><strong>Hub Location:</strong> Salem Central, Tamil Nadu</div>
+            </div>
+            <button class="btn-secondary" style="border-color: rgba(239, 68, 68, 0.3); color: #f87171;" onclick="window.AdminApp.clearDatabase()">
+              <span>⚠️ Clear Local Database Storage</span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ====================================================================== -->
+  <!-- MODAL: ADD / EDIT CUSTOMER REGISTRATION                                -->
+  <!-- ====================================================================== -->
+  <div class="modal-backdrop" id="userModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h2 class="modal-title" id="userModalTitle">Register New Customer / User</h2>
+        <button type="button" class="modal-close" id="userModalClose">&times;</button>
+      </div>
+      <form id="userForm">
+        <input type="hidden" id="userRegId">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label" for="userName">Customer Full Name *</label>
+            <input type="text" id="userName" class="form-input" style="padding-left: 1rem;" placeholder="e.g. Ramesh Selvam" required>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label" for="userPhone">Mobile Number *</label>
+              <input type="tel" id="userPhone" class="form-input" style="padding-left: 1rem;" placeholder="e.g. 7904974485" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="userEmail">Email Address</label>
+              <input type="email" id="userEmail" class="form-input" style="padding-left: 1rem;" placeholder="name@email.com">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="userCity">City / Location</label>
+            <input type="text" id="userCity" class="form-input" style="padding-left: 1rem;" placeholder="e.g. Salem, Namakkal, Erode" value="Salem, Tamil Nadu">
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label" for="userMemberType">Membership Level</label>
+              <select id="userMemberType" class="filter-select" style="width: 100%;">
+                <option value="Standard Member">Standard Member</option>
+                <option value="Premium Member">Premium Member</option>
+                <option value="VIP Corporate">VIP Corporate</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="userStatus">Account Status</label>
+              <select id="userStatus" class="filter-select" style="width: 100%;">
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="userTotalRides">Total Completed Rides</label>
+            <input type="number" id="userTotalRides" class="form-input" style="padding-left: 1rem;" value="0" min="0">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="userNotes">Customer Notes / Preferences</label>
+            <textarea id="userNotes" class="form-input" style="padding-left: 1rem; min-height: 70px; resize: vertical;" placeholder="e.g. AC Sedan preferred, frequent airport traveler"></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" id="userModalCancel">Cancel</button>
+          <button type="submit" class="btn-accent">Save Customer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification System -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="database.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
